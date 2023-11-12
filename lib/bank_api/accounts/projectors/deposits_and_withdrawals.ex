@@ -1,7 +1,9 @@
 defmodule BankAPI.Accounts.Projectors.DepositsAndWithdrawals do
   use Commanded.Projections.Ecto,
     name: "Accounts.Projectors.DepositsAndWithdrawals",
-    consistency: :strong
+    consistency: :strong,
+    application: BankAPI.CommandedApplication,
+    repo: BankAPI.Repo
 
   alias BankAPI.Accounts
   alias BankAPI.Accounts.Events.{DepositedIntoAccount, WithdrawnFromAccount}

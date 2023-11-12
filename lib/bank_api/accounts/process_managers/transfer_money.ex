@@ -1,7 +1,7 @@
 defmodule BankAPI.Accounts.ProcessManagers.TransferMoney do
   use Commanded.ProcessManagers.ProcessManager,
     name: "Accounts.ProcessManagers.TransferMoney",
-    router: BankAPI.Router
+    application: BankAPI.CommandedApplication
 
   @derive Jason.Encoder
   defstruct [

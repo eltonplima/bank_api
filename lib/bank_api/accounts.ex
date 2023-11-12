@@ -4,7 +4,7 @@ defmodule BankAPI.Accounts do
   """
 
   alias BankAPI.Repo
-  alias BankAPI.Router
+  alias BankAPI.CommandedApplication
 
   alias BankAPI.Accounts.Commands.{
     OpenAccount,
@@ -38,7 +38,7 @@ defmodule BankAPI.Accounts do
         initial_balance: initial_balance,
         account_uuid: account_uuid
       }
-      |> Router.dispatch()
+      |> CommandedApplication.dispatch()
 
     case dispatch_result do
       :ok ->
@@ -63,7 +63,7 @@ defmodule BankAPI.Accounts do
       %CloseAccount{
         account_uuid: id
       }
-      |> Router.dispatch()
+      |> CommandedApplication.dispatch()
 
     case dispatch_result do
       :ok ->
@@ -80,7 +80,7 @@ defmodule BankAPI.Accounts do
         account_uuid: id,
         deposit_amount: amount
       }
-      |> Router.dispatch(consistency: :strong)
+      |> CommandedApplication.dispatch(consistency: :strong)
 
     case dispatch_result do
       :ok ->
@@ -100,7 +100,7 @@ defmodule BankAPI.Accounts do
         account_uuid: id,
         withdraw_amount: amount
       }
-      |> Router.dispatch(consistency: :strong)
+      |> CommandedApplication.dispatch(consistency: :strong)
 
     case dispatch_result do
       :ok ->
@@ -121,6 +121,6 @@ defmodule BankAPI.Accounts do
       transfer_amount: amount,
       destination_account_uuid: destination_id
     }
-    |> Router.dispatch()
+    |> CommandedApplication.dispatch()
   end
 end

@@ -1,6 +1,8 @@
 defmodule BankAPI.Accounts.Projectors.AccountClosed do
   use Commanded.Projections.Ecto,
-    name: "Accounts.Projectors.AccountClosed"
+    application: BankAPI.CommandedApplication,
+    name: "Accounts.Projectors.AccountClosed",
+    repo: BankAPI.Repo
 
   alias BankAPI.Accounts
   alias BankAPI.Accounts.Events.AccountClosed
