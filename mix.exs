@@ -5,9 +5,8 @@ defmodule BankAPI.MixProject do
     [
       app: :bank_api,
       version: "0.1.0",
-      elixir: "~> 1.8",
+      elixir: "~> 1.15",
       elixirc_paths: elixirc_paths(Mix.env()),
-      compilers: [:phoenix, :gettext] ++ Mix.compilers(),
       start_permanent: Mix.env() == :prod,
       aliases: aliases(),
       deps: deps()
@@ -36,20 +35,22 @@ defmodule BankAPI.MixProject do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
-      {:commanded, "~> 0.18"},
-      {:commanded_ecto_projections, "~> 0.8"},
-      {:commanded_eventstore_adapter, "~> 0.5", runtime: Mix.env() != :test},
+      {:commanded, "~> 1.4"},
+      {:commanded_ecto_projections, "~> 1.3"},
+      {:commanded_eventstore_adapter, "~> 1.4"},
       {:credo, "~> 1.0"},
-      {:ecto_sql, ">= 3.1.2"},
-      {:eventstore, "~> 0.16.2", runtime: Mix.env() != :test},
-      {:gettext, "~> 0.14"},
-      {:jason, "~> 1.1"},
-      {:phoenix, "~> 1.4.6"},
-      {:phoenix_ecto, "~> 4.0"},
-      {:phoenix_pubsub, "~> 1.1.2"},
-      {:plug_cowboy, "~> 2.0"},
+      {:ecto_sql, "~> 3.10"},
+      {:eventstore, "~> 1.4"},
+      {:gettext, "~> 0.21"},
+      {:jason, "~> 1.4"},
+      {:phoenix, "~> 1.5"},
+      {:phoenix_ecto, "~> 4.4"},
+      {:phoenix_pubsub, "~> 2.0"},
+      {:phoenix_view, "~> 2.0"},
+      {:plug_cowboy, "~> 2.1"},
       {:postgrex, ">= 0.14.3"},
-      {:skooma, "~> 0.2.0"}
+      {:skooma, "~> 0.2.0"},
+      {:uuid, "~> 1.1"}
     ]
   end
 

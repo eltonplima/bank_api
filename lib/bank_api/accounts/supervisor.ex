@@ -4,21 +4,22 @@ defmodule BankAPI.Accounts.Supervisor do
   alias BankAPI.Accounts.Projectors
   alias BankAPI.Accounts.ProcessManagers
 
-  def start_link do
-    Supervisor.start_link(__MODULE__, nil)
+  def start_link(init_args) do
+    Supervisor.start_link(__MODULE__, init_args, name: __MODULE__)
   end
 
   def init(_arg) do
     children = [
       # Projectors
-      worker(Projectors.AccountOpened, [], id: :account_opened),
-      worker(Projectors.AccountClosed, [], id: :account_closed),
-      worker(Projectors.DepositsAndWithdrawals, [], id: :deposits_and_withdrawals),
+      Projectors.AccountOpened,
+      Projectors.AccountClosed,
+      Projectors.DepositsAndWithdrawals,
 
       # Process managers
-      worker(ProcessManagers.TransferMoney, [], id: :transfer_money)
+      ProcessManagers.TransferMoney
     ]
 
-    supervise(children, strategy: :one_for_one)
+    #    supervise(children, strategy: :one_for_one)
+    Supervisor.init(children, strategy: :one_for_one)
   end
 end

@@ -5,7 +5,7 @@
 # is restricted to this project.
 
 # General application configuration
-use Mix.Config
+import Config
 
 config :bank_api,
   namespace: BankAPI,
@@ -16,7 +16,7 @@ config :bank_api, BankAPIWeb.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "Ue+qJJaPBwZpTPoa3xEcP4oINCPljt2h+A70ZkHTHFuP7DGdHGdCu/qby5Ngzqn2",
   render_errors: [view: BankAPIWeb.ErrorView, accepts: ~w(json)],
-  pubsub: [name: BankAPI.PubSub, adapter: Phoenix.PubSub.PG2]
+  pubsub_server: BankAPI.PubSub
 
 # Configures Elixir's Logger
 config :logger, :console,

@@ -4,12 +4,13 @@ defmodule BankAPI.Application do
   use Application
 
   def start(_type, _args) do
-    import Supervisor.Spec
-
     children = [
-      supervisor(BankAPI.Repo, []),
-      supervisor(BankAPIWeb.Endpoint, []),
-      supervisor(BankAPI.Accounts.Supervisor, [])
+      # Start the PubSub system
+      {Phoenix.PubSub, name: BankAPI.PubSub},
+      BankAPI.Repo,
+      BankAPIWeb.Endpoint,
+      BankAPI.CommandedApplication,
+      BankAPI.Accounts.Supervisor
     ]
 
     opts = [strategy: :one_for_one, name: BankAPI.Supervisor]
