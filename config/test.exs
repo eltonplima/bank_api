@@ -8,7 +8,7 @@ config :bank_api, BankAPIWeb.Endpoint,
 
 # Print only warnings and errors during test
 config :logger,
-  level: :warn
+  level: :warning
 
 # Configure your database
 config :bank_api, BankAPI.Repo,
