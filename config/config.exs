@@ -34,6 +34,8 @@ config :commanded_ecto_projections,
 
 config :bank_api, event_stores: [BankAPI.EventStore]
 
+config :bank_api, consistency: :eventual
+
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env()}.exs"

@@ -16,7 +16,6 @@ defmodule BankAPIWeb do
   below. Instead, define any helper function in modules
   and import those modules here.
   """
-
   def controller do
     quote do
       use Phoenix.Controller, namespace: BankAPIWeb
@@ -54,6 +53,15 @@ defmodule BankAPIWeb do
     quote do
       use Phoenix.Channel
       import BankAPIWeb.Gettext
+    end
+  end
+
+  def verified_routes do
+    quote do
+      use Phoenix.VerifiedRoutes,
+        endpoint: BankAPIWeb.Endpoint,
+        router: BankAPIWeb.Router,
+        statics: BankAPIWeb.static_paths()
     end
   end
 

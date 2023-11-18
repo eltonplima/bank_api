@@ -1,5 +1,5 @@
 defmodule BankAPIWeb.AccountControllerTest do
-  use BankAPIWeb.ConnCase
+  use BankAPIWeb.ConnCase, async: true
 
   @create_attrs %{
     initial_balance: 42_00
@@ -9,7 +9,7 @@ defmodule BankAPIWeb.AccountControllerTest do
   }
 
   setup %{conn: conn} do
-    {:ok, conn: put_req_header(conn, "accept", "application/json")}
+    %{conn: put_req_header(conn, "accept", "application/json")}
   end
 
   describe "create account" do

@@ -43,12 +43,12 @@ defmodule BankAPI.MixProject do
       {:eventstore, "~> 1.4"},
       {:gettext, "~> 0.21"},
       {:jason, "~> 1.4"},
-      {:phoenix, "~> 1.5"},
+      {:phoenix, "~> 1.7"},
       {:phoenix_ecto, "~> 4.4"},
       {:phoenix_pubsub, "~> 2.0"},
       {:phoenix_view, "~> 2.0"},
-      {:plug_cowboy, "~> 2.1"},
-      {:postgrex, ">= 0.14.3"},
+      {:plug_cowboy, "~> 2.5"},
+      {:postgrex, "~> 0.14"},
       {:skooma, "~> 0.2.0"},
       {:uuid, "~> 1.1"}
     ]
@@ -62,8 +62,18 @@ defmodule BankAPI.MixProject do
   # See the documentation for `Mix` for more info on aliases.
   defp aliases do
     [
-      "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
-      "ecto.reset": ["ecto.drop", "ecto.setup"]
+      setup: ["deps.get", "ecto.setup"],
+      "ecto.drop": ["ecto.drop", "event_store.drop"],
+      "ecto.setup": [
+        "ecto.create",
+        "ecto.migrate",
+        "event_store.create",
+        "event_store.migrate",
+        "mix event_store.init",
+        "run priv/repo/seeds.exs"
+      ],
+      "ecto.reset": ["ecto.drop", "ecto.setup"],
+      test: ["ecto.drop --quiet", "ecto.create --quiet", "ecto.migrate --quiet", "test"]
     ]
   end
 end

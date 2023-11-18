@@ -11,10 +11,12 @@ defmodule BankAPI.ProjectorCase do
       import BankAPI.DataCase
 
       import BankAPI.Test.ProjectorUtils
+      import Commanded.Assertions.EventAssertions
     end
   end
 
-  setup _tags do
+  setup tags do
+    BankAPI.DataCase.setup_sandbox(tags)
     :ok = BankAPI.Test.ProjectorUtils.truncate_database()
 
     :ok

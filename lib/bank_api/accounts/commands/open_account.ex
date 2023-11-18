@@ -1,6 +1,7 @@
 defmodule BankAPI.Accounts.Commands.OpenAccount do
   @enforce_keys [:account_uuid]
 
+  @derive Jason.Encoder
   defstruct [:account_uuid, :initial_balance]
 
   alias BankAPI.Accounts

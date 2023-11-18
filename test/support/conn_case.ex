@@ -17,17 +17,21 @@ defmodule BankAPIWeb.ConnCase do
 
   using do
     quote do
+      # The default endpoint for testing
+      @endpoint BankAPIWeb.Endpoint
+
+      use BankAPIWeb, :verified_routes
+      alias BankAPIWeb.Router.Helpers, as: Routes
+
       # Import conveniences for testing with connections
       import Plug.Conn
       import Phoenix.ConnTest
-      alias BankAPIWeb.Router.Helpers, as: Routes
-
-      # The default endpoint for testing
-      @endpoint BankAPIWeb.Endpoint
+      import BankAPIWeb.ConnCase
     end
   end
 
-  setup _tags do
+  setup tags do
+    BankAPI.DataCase.setup_sandbox(tags)
     {:ok, conn: Phoenix.ConnTest.build_conn()}
   end
 end

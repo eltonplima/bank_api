@@ -19,6 +19,7 @@ defmodule BankAPIWeb.Endpoint do
   # :code_reloader configuration of your endpoint.
   if code_reloading? do
     plug Phoenix.CodeReloader
+    plug Phoenix.Ecto.CheckRepoStatus, otp_app: :bank_api
   end
 
   plug Plug.RequestId
@@ -38,7 +39,8 @@ defmodule BankAPIWeb.Endpoint do
   plug Plug.Session,
     store: :cookie,
     key: "_bank_api_key",
-    signing_salt: "pBArbCOX"
+    signing_salt: "pBArbCOX",
+    same_site: "Lax"
 
   plug BankAPIWeb.Router
 end
