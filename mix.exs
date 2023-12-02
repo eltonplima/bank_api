@@ -69,7 +69,7 @@ defmodule BankAPI.MixProject do
         "ecto.migrate",
         "event_store.create",
         "event_store.migrate",
-        "mix event_store.init",
+        "event_store.init",
         "run priv/repo/seeds.exs"
       ],
       "ecto.reset": ["ecto.drop", "ecto.setup"],
