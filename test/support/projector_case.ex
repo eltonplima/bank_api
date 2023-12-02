@@ -8,7 +8,7 @@ defmodule BankAPI.ProjectorCase do
       import Ecto
       import Ecto.Changeset
       import Ecto.Query
-      import BankAPI.DataCase
+      import BankAPI.Test.DataCase
 
       import BankAPI.Test.ProjectorUtils
       import Commanded.Assertions.EventAssertions
@@ -16,7 +16,7 @@ defmodule BankAPI.ProjectorCase do
   end
 
   setup tags do
-    BankAPI.DataCase.setup_sandbox(tags)
+    BankAPI.Test.DataCase.setup_sandbox(tags)
     :ok = BankAPI.Test.ProjectorUtils.truncate_database()
 
     :ok

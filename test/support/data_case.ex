@@ -1,4 +1,4 @@
-defmodule BankAPI.DataCase do
+defmodule BankAPI.Test.DataCase do
   use ExUnit.CaseTemplate
 
   using do
@@ -8,12 +8,12 @@ defmodule BankAPI.DataCase do
       import Ecto
       import Ecto.Changeset
       import Ecto.Query
-      import BankAPI.DataCase
+      import BankAPI.Test.DataCase
     end
   end
 
   setup tags do
-    BankAPI.DataCase.setup_sandbox(tags)
+    BankAPI.Test.DataCase.setup_sandbox(tags)
     :ok
   end
 
