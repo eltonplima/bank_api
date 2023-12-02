@@ -21,7 +21,9 @@ config :bank_api, BankAPIWeb.Endpoint,
 # Configures Elixir's Logger
 config :logger, :console,
   format: "$time $metadata[$level] $message\n",
-  metadata: [:request_id]
+  metadata: [:request_id],
+  handle_otp_reports: true,
+  handle_sasl_reports: true
 
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
@@ -35,6 +37,14 @@ config :commanded_ecto_projections,
 config :bank_api, event_stores: [BankAPI.EventStore]
 
 config :bank_api, consistency: :eventual
+
+config :bank_api, BankAPI.CommandedApplication,
+  event_store: [
+    adapter: Commanded.EventStore.Adapters.EventStore,
+    event_store: BankAPI.EventStore
+  ],
+  pubsub: :local,
+  registry: :local
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
