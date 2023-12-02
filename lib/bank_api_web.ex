@@ -60,8 +60,7 @@ defmodule BankAPIWeb do
     quote do
       use Phoenix.VerifiedRoutes,
         endpoint: BankAPIWeb.Endpoint,
-        router: BankAPIWeb.Router,
-        statics: BankAPIWeb.static_paths()
+        router: BankAPIWeb.Router
     end
   end
 
