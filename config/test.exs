@@ -7,9 +7,11 @@ config :bank_api, BankAPIWeb.Endpoint,
   secret_key_base: "ug1fCyvbU+FfuxWCJYAiAMfv6HR21hYXtfYWftZFNvHIUMwmeEzIJ6vzTwzb8cIE",
   server: false
 
-# Print only warnings and errors during test
+# Print only critical during test
+# If you increase the log level, you could start seeing ecto related errors because of the
+# event sourced projections
 config :logger,
-  level: :warning
+  level: :critical
 
 # Configure your database
 config :bank_api, BankAPI.Repo,
